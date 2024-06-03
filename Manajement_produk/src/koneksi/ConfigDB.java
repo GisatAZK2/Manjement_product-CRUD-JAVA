@@ -22,6 +22,7 @@ public class ConfigDB {
  
     }catch(Exception e){
          JOptionPane.showMessageDialog(null,"Connection Error");
+         System.exit(0);
     }
     return mysqlconnection;
     }
