@@ -80,7 +80,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-      try {
+     try {
             String query = "SELECT * FROM tb_admin WHERE Username=? AND Password=?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, t_user.getText());
@@ -93,10 +93,17 @@ public class login extends javax.swing.JFrame {
                     manajemen.setVisible(true);
                     dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid username or password");
+               int option = JOptionPane.showConfirmDialog(null, "Invalid username or password. Do you want to try again?", "Invalid Login", JOptionPane.YES_NO_OPTION);
+                if(option == JOptionPane.YES_OPTION) {
+                // Clear text fields for re-entry
+                t_user.setText("");
+                t_pass.setText("");
+            } else {
+    
+            }
             }
         } catch (Exception e) {
-            // Log the exception and show a user-friendly message
+            
             JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
